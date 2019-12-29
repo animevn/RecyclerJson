@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">My Note</string>
+    <string name="mniMenuSetting">Setting</string>
+    <string name="mniMenuAdd">Add</string>
+    <string name="rvMainList">Recycler View Main</string>
+    <string name="fabMainAdd">Float Action Bar Main</string>
+    <string name="etTitle">Title</string>
+    <string name="etDescription">Description</string>
+    <string name="cbImportant">Important</string>
+    <string name="cbTodo">Todo</string>
+    <string name="cbIdea">Idea</string>
+    <string name="bnSave">Save</string>
+    <string name="bnCancel">Cancel</string>
+    <string name="tvSettingSound">Sound</string>
+    <string name="tvSettingAnimation">Animation Speed</string>
+    <string name="cbSettingSound">On/Off</string>
+    <string name="rgSettingAnimation">SettingAnimation</string>
+    <string name="rbnSettingFast">Fast</string>
+    <string name="rbnSettingNormal">Normal</string>
+    <string name="rbnSettingSlow">Slow</string>
+    <string name="tvRecyclerStatus">Status</string>
+    <string name="tvRecyclerTitle">Title</string>
+    <string name="tvRecyclerDescription">Description</string>
+    <string name="show">Show</string>
+    <string name="error_load_json">Load Json file error</string>
+    <string name="error_save_json">Error whitle saving json file</string>
+</resources>
