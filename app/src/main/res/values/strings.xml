@@ -24,4 +24,6 @@
     <string name="show">Show</string>
     <string name="error_load_json">Load Json file error</string>
     <string name="error_save_json">Error whitle saving json file</string>
+    <string name="title">title</string>
+    <string name="detail">detail</string>
 </resources>

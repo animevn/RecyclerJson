@@ -1,5 +1,6 @@
 package com.haanhgs.mynote;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ public class FragmentDetail extends DialogFragment {
 
     private Note note;
     private boolean isNewNote = true;
+    private Context context;
 
     public void setNote(Note note) {
         this.note = note;
@@ -51,12 +53,18 @@ public class FragmentDetail extends DialogFragment {
         }
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.note, container, false);
+        View view = inflater.inflate(R.layout.fragment_detail, container, false);
         ButterKnife.bind(this, view);
         updateViews();
         return view;
@@ -73,9 +81,9 @@ public class FragmentDetail extends DialogFragment {
     private void handleButtonSave(View view){
         updateNote();
         if (isNewNote){
-            ((MainActivity)view.getContext()).addNote(note);
+            ((MainActivity)context).addNote(note);
         }else {
-            ((MainActivity)view.getContext()).notifyChange();
+            ((MainActivity)context).notifyChange();
         }
         dismiss();
     }

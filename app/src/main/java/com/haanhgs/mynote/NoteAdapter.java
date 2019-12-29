@@ -3,6 +3,7 @@ package com.haanhgs.mynote;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import java.util.List;
 import androidx.annotation.NonNull;
@@ -11,7 +12,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
-
 
     private List<Note> noteList;
 
@@ -29,7 +29,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.bindViews(noteList.get(position));
     }
 
     @Override
@@ -39,17 +39,32 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tvRecyclerStatus)
-        TextView tvRecyclerStatus;
-        @BindView(R.id.tvRecyclerTitle)
-        TextView tvRecyclerTitle;
-        @BindView(R.id.tvRecyclerDescription)
-        TextView tvRecyclerDescription;
+        @BindView(R.id.cbRvImportant)
+        CheckBox cbRvImportant;
+        @BindView(R.id.cbRvTodo)
+        CheckBox cbRvTodo;
+        @BindView(R.id.cbRvIdea)
+        CheckBox cbRvIdea;
+        @BindView(R.id.tvRvTitle)
+        TextView tvRvTitle;
+        @BindView(R.id.tvRvDetail)
+        TextView tvRvDetail;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(view -> {
+                Note note = noteList.get(ViewHolder.this.getAdapterPosition());
+                ((MainActivity)itemView.getContext()).editNote(note);
+            });
+        }
 
+        private void bindViews(Note note) {
+            tvRvTitle.setText(note.getTitle());
+            tvRvDetail.setText(note.getDetail());
+            cbRvImportant.setChecked(note.isImportant());
+            cbRvTodo.setChecked(note.isTodo());
+            cbRvIdea.setChecked(note.isIdea());
         }
     }
 }
