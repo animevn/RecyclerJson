@@ -1,15 +1,16 @@
 package com.haanhgs.mynote;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,9 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private List<Note> noteList;
     private NoteAdapter adapter;
 
-    /////////////////
-    //public method//
-    /////////////////
+    //////////////////
+    //public methods//
+    //////////////////
+
     public void editNote(Note note) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentDetail fragment = (FragmentDetail) manager.findFragmentByTag("edit");
@@ -64,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
         createNote();
     }
 
-    /////////////////
-    //private method//
-    /////////////////
+    ///////////////////
+    //private methods//
+    //////////////////
 
     private void loadJson(){
         try{
@@ -133,8 +135,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         saveJson();
+    }
+
+
+    /////////////////
+    //menu methods  //
+    /////////////////
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void openSettings(){
+        startActivity(new Intent(this, SettingsActivity.class));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.mniSettings){
+            openSettings();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
