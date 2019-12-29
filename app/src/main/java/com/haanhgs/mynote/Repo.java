@@ -1,12 +1,10 @@
 package com.haanhgs.mynote;
 
 import android.content.Context;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -20,17 +18,7 @@ import java.util.List;
 
 public class Repo {
 
-    public static Note createNote(JSONObject jsonObject)throws JSONException{
-        Note note = new Note();
-        note.setTitle(jsonObject.getString("title"));
-        note.setDetail(jsonObject.getString("detail"));
-        note.setIdea(jsonObject.getBoolean("idea"));
-        note.setImportant(jsonObject.getBoolean("important"));
-        note.setTodo(jsonObject.getBoolean("todo"));
-        return note;
-    }
-
-    public static JSONObject toJson(Note note)throws JSONException{
+    private static JSONObject toJson(Note note)throws JSONException{
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("title", note.getTitle());
         jsonObject.put("detail", note.getDetail());
@@ -51,6 +39,16 @@ public class Repo {
         }finally {
             if (writer != null) writer.close();
         }
+    }
+
+    private static Note createNote(JSONObject jsonObject)throws JSONException{
+        Note note = new Note();
+        note.setTitle(jsonObject.getString("title"));
+        note.setDetail(jsonObject.getString("detail"));
+        note.setIdea(jsonObject.getBoolean("idea"));
+        note.setImportant(jsonObject.getBoolean("important"));
+        note.setTodo(jsonObject.getBoolean("todo"));
+        return note;
     }
 
     public static List<Note> loadJson(Context ct)throws JSONException, IOException{
