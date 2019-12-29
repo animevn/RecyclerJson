@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
-    private List<Note> noteList;
+    private final List<Note> noteList;
 
     public NoteAdapter(List<Note> noteList) {
         this.noteList = noteList;
