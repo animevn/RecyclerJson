@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+//redo
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.fbrMain)
